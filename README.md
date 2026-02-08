@@ -12,9 +12,9 @@ Nearly 20 years later, I return to the question with modern causal inference met
 
 ## Methodology
 
-This project uses **CausalImpact**, a Bayesian Structural Time Series (BSTS) method developed by [Brodersen et al. (2015) at Google](https://projecteuclid.org/euclid.aoas/1430564740). The model constructs a **synthetic counterfactual** — a prediction of what would have happened to DC's economic indicators if the stadium had never been built — by learning relationships with control units during the pre-intervention period.
+This project applies **CausalImpact**, a Bayesian Structural Time Series (BSTS) method developed by [Brodersen et al. (2015) at Google](https://projecteuclid.org/euclid.aoas/1430564740), to construct a **synthetic counterfactual** — a prediction of what would have happened to DC's economic indicators if the stadium had never been built. The model learns relationships with carefully selected control units during the pre-intervention period, an approach I've used professionally for policy evaluation and program measurement in corporate settings.
 
-The key advantage: rather than simply comparing "before vs. after," CausalImpact accounts for broader economic trends (the Great Recession, national growth patterns) by using controls that experienced those same trends but *without* a stadium.
+The key advantage: rather than simply comparing "before vs. after," CausalImpact accounts for broader economic trends (the Great Recession, national growth patterns) by using controls that experienced those same trends but *without* a stadium. Control group selection — choosing comparable metros and gentrifying neighborhoods that isolate the stadium's effect — is where the econometric judgment matters most.
 
 ## Two Analyses, Two Claims Tested
 
@@ -22,7 +22,7 @@ The key advantage: rather than simply comparing "before vs. after," CausalImpact
 
 **Claim**: The stadium would catalyze neighborhood revitalization in the Navy Yard area.
 
-**Method**: Monthly Zillow Home Value Index for Navy Yard zip codes vs. other gentrifying DC neighborhoods (Shaw, Columbia Heights, H Street, Petworth, etc.) that experienced similar revitalization *without* a stadium.
+**Method**: Monthly Zillow Home Value Index (acquired via Zillow Research) for Navy Yard zip codes vs. other gentrifying DC neighborhoods (Shaw, Columbia Heights, H Street, Petworth, etc.) that experienced similar revitalization *without* a stadium.
 
 ![Property Value Trends](figures/property_trends_indexed.png)
 *Navy Yard (red) and SW Waterfront (blue) vs. control neighborhoods (gray), indexed to Jan 2000 = 100.*
@@ -41,7 +41,7 @@ The key advantage: rather than simply comparing "before vs. after," CausalImpact
 
 **Claim**: The stadium would create 3,500 jobs and generate $28.5M in annual tax revenue.
 
-**Method**: Monthly BLS Leisure & Hospitality employment for DC metro vs. 8 comparable metro areas (Baltimore, Philadelphia, Boston, Pittsburgh, St. Louis, Richmond, Nashville, Columbus).
+**Method**: Monthly BLS Leisure & Hospitality employment (pulled via BLS API) for DC metro vs. 8 comparable metro areas (Baltimore, Philadelphia, Boston, Pittsburgh, St. Louis, Richmond, Nashville, Columbus).
 
 ![Employment Trends](figures/employment_trends_indexed.png)
 *DC metro (red) vs. control metros (gray), indexed to Jan 2000 = 100.*
@@ -83,6 +83,8 @@ This is consistent with the [broad academic consensus](https://www.brookings.edu
 
 ## Project Structure
 
+Built in Python using pandas, statsmodels, scipy, matplotlib, and seaborn.
+
 ```
 ├── analysis_property_values.py   # Claim 1: Neighborhood revitalization
 ├── analysis_employment.py        # Claim 2: Job creation / economic activity
@@ -95,15 +97,6 @@ This is consistent with the [broad academic consensus](https://www.brookings.edu
 │   └── DEEC_Broken_Promises_Big_Losses_2007.pdf
 └── requirements.txt
 ```
-
-## Skills Demonstrated
-
-- **Causal Inference** — CausalImpact / Bayesian Structural Time Series (BSTS)
-- **Python** — pandas, matplotlib, seaborn, statsmodels, scipy
-- **Data Acquisition** — BLS API, Zillow Research data
-- **Econometrics** — Control group selection, robustness testing, policy evaluation
-- **Data Visualization** — Indexed trend comparisons, annotated time series
-- **Statistical Communication** — Translating model output into policy-relevant findings
 
 ## Data Sources
 
